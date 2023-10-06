@@ -1,53 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crime in the US</title>
-    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+    <style>
+        .chart-container {
+            margin-bottom: 40px;
+        }
+    </style>
 </head>
+
 <body>
 
-<h1>The Crime population existed in the US: Data Visualisation Map</h1>
+<h1>Crime Analysis in the US</h1>
+<p>Welcome to our comprehensive analysis of crime in the US. Using data sourced from the FBI in 2019, we provide visual insights into crime trends across states.</p>
 
-<div id="vis"></div>
+<section class="chart-container">
+    <div id="vis"></div>
+</section>
+
+<section class="chart-container">
+    <h2>Chart Title 2</h2>
+    <div id="vis2"></div>
+    <p>Explanation for the second chart...</p>
+</section>
+
+<section class="chart-container">
+    <h2>Chart Title 3</h2>
+    <div id="vis3"></div>
+    <p>Explanation for the third chart...</p>
+</section>
+
+<!-- Additional chart containers can be added as needed. -->
 
 <script type="text/javascript">
-    var yourVlSpec = {
+    var spec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-        "width": 600,
-        "height": 350,
-        "autosize": {
-            "type": "pad",
-            "contains": "padding",
-            "resize": true
-        },
-        "view": {
-            "stroke": "transparent"
-        },
-        "title": {
-            "text": "Crime in the US",
-            "fontSize": 16,
-            "subtitle": [
-                "Offences per 100k population. Source FBI, 2019",
-                ""
-            ],
-            "subtitleFontStyle": "italic",
-            "subtitleFontSize": 13,
-            "anchor": "middle"
-        },
-        "data": {
-            "url": "https://raw.githubusercontent.com/RDeconomist/RDeconomist.github.io/main/charts/maps/geoUSStates.json",
-            "format": {
-                "property": "features"
+        "vconcat": [
+            {
+                "width": 600,
+                "height": 350,
+                "autosize": {
+                    "type": "pad",
+                    "contains": "padding",
+                    "resize": true
+                },
+                "view": {
+                    "stroke": "transparent"
+                },
+                "title": {
+                    "text": "Crime in the US by State",
+                    "fontSize": 16,
+                    "subtitle": [
+                        "Offences per 100k population. Source FBI, 2019",
+                        ""
+                    ],
+                    "subtitleFontStyle": "italic",
+                    "subtitleFontSize": 13,
+                    "anchor": "middle"
+                },
+                "data": {
+                    "url": "https://raw.githubusercontent.com/RDeconomist/RDeconomist.github.io/main/charts/maps/geoUSStates.json",
+                    "format": {
+                        "property": "features"
+                    }
+                },
+                "projection": {
+                    "type": "albersUsa"
+                },
+                "mark": "geoshape",
+                "transform": [
+                    {
+                        "lookup": "properties.NAME",
+                        "from": {
+                            "data": {
+                                "url": "https://raw.githubusercontent.com/jhellingsdata/jhellingsdata.github.io/main/Data/USA_crime_databank_wide.csv"
+                            },
+                            "key": "State",
+                            "fields": [
+                                "Violent Crime",
+                                "Homocide",
+                                "Rape",
+                                "Robbery",
+                                "Aggravated Assault",
+                                "Property Crime",
+                                "Burglary",
+                                "Larceny",
+                                "Motor Vehicle Theft",
+                                "Arson"
+                            ]
+                        }
+                    },
+                    {
+                        "calculate": "datum[Select]",
+                        "as": "varSelected"
+                    }
+                ],
+                "encoding": {
+                    "color": {
+                        "field": "varSelected",
+                        "type": "quantitative",
+                        "scale": {
+                            "scheme": "orangered"
+                        },
+                        "legend": {
+                            "title": "criminal population",
+                            "orient": "right",
+                            "direction": "vertical"
+                        }
+                    },
+                    "tooltip": [
+                        {
+                            "field": "properties.NAME",
+                            "title": "State"
+                        },
+                        {
+                            "field": "varSelected",
+                            "title": "Offending rate",
+                            "format": ",d"
+                        }
+                    ]
+                }
+            },
+            {
+                "width": 600,
+                "height": 400,
+                "title": "Crime Rate by State",
+                "data": {
+                    "url": "https://raw.githubusercontent.com/jhellingsdata/jhellingsdata.github.io/main/Data/USA_crime_databank_wide.csv"
+                },
+                "transform": [
+                    {
+                        "calculate": "datum[Select]",
+                        "as": "varSelected"
+                    }
+                ],
+                "mark": "bar",
+                "encoding": {
+                    "y": {
+                        "field": "varSelected",
+                        "type": "quantitative",
+                        "title": "Crime Rate"
+                    },
+                    "x": {
+                        "field": "State",
+                        "type": "ordinal",
+                        "title": "State",
+                        "sort": "-y"
+                    },
+                    "color": {
+                        "field": "varSelected",
+                        "type": "quantitative",
+                        "scale": {
+                            "scheme": "orangered"
+                        },
+                        "legend": {
+                            "title": "Crime Rate"
+                        }
+                    },
+                    "tooltip": [
+                        {
+                            "field": "State",
+                            "title": "State"
+                        },
+                        {
+                            "field": "varSelected",
+                            "title": "Crime Rate",
+                            "format": ",d"
+                        }
+                    ]
+                }
             }
-        },
-        "projection": {
-            "type": "albersUsa"
-        },
-        "mark": "geoshape",
+        ],
         "params": [
             {
                 "name": "Select",
@@ -68,66 +197,11 @@
                     ]
                 }
             }
-        ],
-        "transform": [
-            {
-                "lookup": "properties.NAME",
-                "from": {
-                    "data": {
-                        "url": "https://raw.githubusercontent.com/jhellingsdata/jhellingsdata.github.io/main/Data/USA_crime_databank_wide.csv"
-                    },
-                    "key": "State",
-                    "fields": [
-                        "Violent Crime",
-                        "Homocide",
-                        "Rape",
-                        "Robbery",
-                        "Aggravated Assault",
-                        "Property Crime",
-                        "Burglary",
-                        "Larceny",
-                        "Motor Vehicle Theft",
-                        "Arson"
-                    ]
-                }
-            },
-            {
-                "calculate": "datum[Select]",
-                "as": "varSelected"
-            }
-        ],
-        "encoding": {
-            "color": {
-                "field": "varSelected",
-                "type": "quantitative",
-                "scale": {
-                    "scheme": "orangered"
-                },
-                "legend": {
-                    "title": "criminal population",
-                    "orient": "right",
-                    "direction": "vertical"
-                }
-            },
-            "tooltip": [
-                {
-                    "field": "properties.NAME",
-                    "title": "State"
-                },
-                {
-                    "field": "varSelected",
-                    "title": "Offending rate",
-                    "format": ",d"
-                }
-            ]
-        }
+        ]
     };
-
-    // Embed the visualization in the container with id "vis"
-    vegaEmbed('#vis', yourVlSpec).then(function(result) {
-        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-    }).catch(console.error);
+    vegaEmbed('#vis', spec);
 </script>
 
 </body>
+
 </html>
