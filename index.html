@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>US Crime Data Visualization</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>
+        US Crime Data Visualization
+    </title>
     <!-- Include Vega and Vega-Lite Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6">
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -18,11 +22,12 @@
         }
 
         .intro {
-            background-color: #e0f8e0;  /* White background for intro */
+            background-color: #b2d8b2;
             padding: 20px;
             margin-bottom: 20px;
             border-radius: 5px;
         }
+
 
         .chart-description {
             background-color: #e6e0f8;  /* Slightly lighter than body for distinction */
@@ -33,7 +38,7 @@
         }
 
         .chart-container {
-            background-color: #e0f8e0;  /* White background for charts */
+            background-color: #e6e0f8;  /* White background for charts */
             padding: 20px;
             margin-bottom: 20px;
             border-radius: 5px;
@@ -52,12 +57,51 @@
             display: table;
             clear: both;
         }
+        .chart-wrapper {
+            width: 50%;
+            float: left;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
+        /* Clear float after every 2nd chart-wrapper */
+        .chart-wrapper:nth-of-type(2n)::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .chart-wrapper {
+            width: 50%;
+            float: left;
+            box-sizing: border-box;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* Clear float after every 2nd chart-wrapper */
+        .chart-wrapper:nth-of-type(2n)::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .soft-frame {
+            background: linear-gradient(135deg, #f2e9e4 0%, #ffeee7 100%);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .chart-description {
+            font-size: medium;
+            font-style: normal;
+        }
     </style>
 </head>
-
 <body>
-<div class="intro">
-    <h1>Crime in the United States</h1>
+<div class="intro" style="text-align: center;">
+    <h1>
+        Crime in the United States
+    </h1>
     <p>
         Crime in the United States has been recorded since the early colonial days. Over the years, the nature and dynamics of criminal activities have evolved,
         influenced by various socio-economic and political factors. The data visualizations below provide insights into crime rates across different states,
@@ -65,12 +109,6 @@
         public safety and justice outcomes.
     </p>
 </div>
-
-<div class="chart-description">
-    In the US map, the crime type of violent crime includes homocide, rape, robbery, and aggravated assault, as well as property crime which includes burglary, larceny, motor vehicle theft, and the crime of arson, all represented as offences per 100,000 populations.
-    In this map, it is evident that the District of Columbia, Alaska, and New Mexico have the highest crime rates for violent crimes, with rates of 1045, 865, and 824 respectively. Additionally, the District of Columbia also has the highest rate for property crimes, amounting to 4351. For arson crimes, the states with the highest rates are Hawaii and Alaska, with rates of 29 and 28 respectively.
-</div>
-<div class="chart-container" id="chart1"></div>
 <script type="text/javascript">
     vegaEmbed('#chart1', {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -192,11 +230,6 @@
         ]
     });
 </script>
-
-<div class="chart-description">
-    This chart showcases the preference of crime types based on a crime rate of 100k persons, covering all types of crimes. Upon aggregating data from all states, it's clear that larceny has the highest rate, reaching 81350.9, while homocide, a type of violent crime, has the lowest rate at 265.1.
-</div>
-<div class="chart-container" id="chart2"></div>
 <script type="text/javascript">
     vegaEmbed('#chart2', {
         "$schema": "https://vega.github.io/schema/vega/v5.json",
@@ -398,11 +431,6 @@
         "config": {}
     });
 </script>
-
-<div class="chart-description">
-    This scatter plot displays violent crimes vs. property crimes for each state. Most states have a proportional distribution on the scatter plot. However, the worst-performing states are the District of Columbia, New Mexico, and Alaska, as they are situated in the top-right corner of the plot.
-</div>
-<div class="chart-container" id="chart3"></div>
 <script type="text/javascript">
     vegaEmbed('#chart3', {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -449,11 +477,6 @@
         "config": {}
     });
 </script>
-
-<div class="chart-description">
-    Examining this line chart, which represents data from the years 2012-2020 in the United States, we find that the average crime rate for violent crimes lies between 360-400. The year 2020 saw the highest rate at 398.
-</div>
-<div class="chart-container" id="chart4"></div>
 <script type="text/javascript">
     vegaEmbed('#chart4', {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -515,11 +538,6 @@
         }
     });
 </script>
-
-<div class="chart-description">
-    Delving into societal biases towards crime, it is evident that race plays a significant role, with 4491 incidents attributed to it. Furthermore, sexual orientation and religion also have high incident counts, recorded at 1121 and 1013 respectively.
-</div>
-<div class="chart-container" id="chart5"></div>
 <script type="text/javascript">
     vegaEmbed('#chart5', {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -567,11 +585,6 @@
         "config": {}
     });
 </script>
-
-<div class="chart-description">
-    Given that racial bias plays a significant role in crime, this chart breaks down crime distribution by race. As the majority group in the United States, whites have the largest count. However, African Americans, despite being a minority, have the second-largest count, with 1178386 arrestees.
-</div>
-<div class="chart-container" id="chart6"></div>
 <script type="text/javascript">
     vegaEmbed('#chart6', {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -615,11 +628,6 @@
         "config": {}
     });
 </script>
-
-<div class="chart-description">
-    Lastly, this chart provides a dropdown selection for each state, displaying detailed crime rates for all types of crimes.
-</div>
-<div class="chart-container" id="chart7"></div>
 <script type="text/javascript">
     vegaEmbed('#chart7', {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -654,6 +662,7 @@
                         "Colorado",
                         "Connecticut",
                         "Delaware",
+                        "District of Columbia",
                         "Florida",
                         "Georgia",
                         "Hawaii",
@@ -740,6 +749,646 @@
         "config": {}
     });
 </script>
-
+<div class="chart-columns">
+    <div class="chart-wrapper soft-frame">
+        <div class="chart-description" style="background-color: transparent;">
+            In the US map, the crime type of violent crime includes homocide, rape, robbery, and aggravated assault, as well as property crime which includes burglary, larceny, motor vehicle theft, and the crime of arson, all represented as offences per 100,000 populations.
+            In this map, it is evident that the District of Columbia, Alaska, and New Mexico have the highest crime rates for violent crimes, with rates of 1045, 865, and 824 respectively. Additionally, the District of Columbia also has the highest rate for property crimes, amounting to 4351. For arson crimes, the states with the highest rates are Hawaii and Alaska, with rates of 29 and 28 respectively.
+        </div>
+        <div class="chart-container" id="chart1" style="background-color: transparent;">
+        </div>
+        <script type="text/javascript">
+            vegaEmbed('#chart1', {
+                "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                "vconcat": [
+                    {
+                        "width": 400,
+                        "height": 250,
+                        "autosize": {"type": "pad", "contains": "padding", "resize": true},
+                        "view": {"stroke": "transparent"},
+                        "title": {
+                            "text": "Crime in the US by State",
+                            "fontSize": 16,
+                            "subtitle": ["Offences per 100k population. Source FBI, 2019", ""],
+                            "subtitleFontStyle": "italic",
+                            "subtitleFontSize": 13,
+                            "anchor": "middle"
+                        },
+                        "data": {
+                            "url": "https://raw.githubusercontent.com/RDeconomist/RDeconomist.github.io/main/charts/maps/geoUSStates.json",
+                            "format": {"property": "features"}
+                        },
+                        "projection": {"type": "albersUsa"},
+                        "mark": "geoshape",
+                        "transform": [
+                            {
+                                "lookup": "properties.NAME",
+                                "from": {
+                                    "data": {
+                                        "url": "https://raw.githubusercontent.com/jhellingsdata/jhellingsdata.github.io/main/Data/USA_crime_databank_wide.csv"
+                                    },
+                                    "key": "State",
+                                    "fields": [
+                                        "Violent Crime",
+                                        "Homocide",
+                                        "Rape",
+                                        "Robbery",
+                                        "Aggravated Assault",
+                                        "Property Crime",
+                                        "Burglary",
+                                        "Larceny",
+                                        "Motor Vehicle Theft",
+                                        "Arson"
+                                    ]
+                                }
+                            },
+                            {"calculate": "datum[Select]", "as": "varSelected"}
+                        ],
+                        "encoding": {
+                            "color": {
+                                "field": "varSelected",
+                                "type": "quantitative",
+                                "scale": {"scheme": "orangered"},
+                                "legend": {
+                                    "title": "criminal population",
+                                    "orient": "right",
+                                    "direction": "vertical"
+                                }
+                            },
+                            "tooltip": [
+                                {"field": "properties.NAME", "title": "State"},
+                                {"field": "varSelected", "title": "Offending rate", "format": ",d"}
+                            ]
+                        }
+                    },
+                    {
+                        "width": 600,
+                        "height": 400,
+                        "title": "Crime Rate by State",
+                        "data": {
+                            "url": "https://raw.githubusercontent.com/jhellingsdata/jhellingsdata.github.io/main/Data/USA_crime_databank_wide.csv"
+                        },
+                        "transform": [{"calculate": "datum[Select]", "as": "varSelected"}],
+                        "mark": "bar",
+                        "encoding": {
+                            "y": {
+                                "field": "varSelected",
+                                "type": "quantitative",
+                                "title": "Crime Rate"
+                            },
+                            "x": {
+                                "field": "State",
+                                "type": "ordinal",
+                                "title": "State",
+                                "sort": "-y"
+                            },
+                            "color": {
+                                "field": "varSelected",
+                                "type": "quantitative",
+                                "scale": {"scheme": "orangered"},
+                                "legend": {"title": "Crime Rate"}
+                            },
+                            "tooltip": [
+                                {"field": "State", "title": "State"},
+                                {"field": "varSelected", "title": "Crime Rate", "format": ",d"}
+                            ]
+                        }
+                    }
+                ],
+                "params": [
+                    {
+                        "name": "Select",
+                        "value": "Violent Crime",
+                        "bind": {
+                            "input": "select",
+                            "options": [
+                                "Violent Crime",
+                                "Homocide",
+                                "Rape",
+                                "Robbery",
+                                "Aggravated Assault",
+                                "Property Crime",
+                                "Burglary",
+                                "Larceny",
+                                "Motor Vehicle Theft",
+                                "Arson"
+                            ]
+                        }
+                    }
+                ]
+            });
+        </script>
+    </div>
+    <div class="chart-wrapper soft-frame">
+        <div class="chart-description" style="background-color: transparent;">
+            This chart provides a dropdown selection for each state, displaying detailed crime rates for all types of crimes. By selecting different state, it is obviously to see each crime type's data
+        </div>
+        <div class="chart-container" id="chart7" style="background-color: transparent;">
+        </div>
+        <script type="text/javascript">
+            vegaEmbed('#chart7', {
+                "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                "width": 600,
+                "height": 350,
+                "title": {
+                    "text": "Crime Rates by Type",
+                    "fontSize": 16,
+                    "subtitle": [
+                        "Offences per 100k population for a selected state. Source: FBI, 2019",
+                        ""
+                    ],
+                    "subtitleFontStyle": "italic",
+                    "subtitleFontSize": 13,
+                    "anchor": "middle"
+                },
+                "data": {
+                    "url": "https://raw.githubusercontent.com/jhellingsdata/jhellingsdata.github.io/main/Data/USA_crime_databank_wide.csv"
+                },
+                "params": [
+                    {
+                        "name": "SelectedState",
+                        "value": "California",
+                        "bind": {
+                            "input": "select",
+                            "options": [
+                                "Alabama",
+                                "Alaska",
+                                "Arizona",
+                                "Arkansas",
+                                "California",
+                                "Colorado",
+                                "Connecticut",
+                                "Delaware",
+                                "Florida",
+                                "Georgia",
+                                "Hawaii",
+                                "Idaho",
+                                "Illinois",
+                                "Indiana",
+                                "Iowa",
+                                "Kansas",
+                                "Kentucky",
+                                "Louisiana",
+                                "Maine",
+                                "Maryland",
+                                "Massachusetts",
+                                "Michigan",
+                                "Minnesota",
+                                "Mississippi",
+                                "Missouri",
+                                "Montana",
+                                "Nebraska",
+                                "Nevada",
+                                "New Hampshire",
+                                "New Jersey",
+                                "New Mexico",
+                                "New York",
+                                "North Carolina",
+                                "North Dakota",
+                                "Ohio",
+                                "Oklahoma",
+                                "Oregon",
+                                "Pennsylvania",
+                                "Rhode Island",
+                                "South Carolina",
+                                "South Dakota",
+                                "Tennessee",
+                                "Texas",
+                                "Utah",
+                                "Vermont",
+                                "Virginia",
+                                "Washington",
+                                "West Virginia",
+                                "Wisconsin",
+                                "Wyoming"
+                            ],
+                            "name": "Select State"
+                        }
+                    }
+                ],
+                "transform": [
+                    {"filter": "datum.State === SelectedState"},
+                    {
+                        "fold": [
+                            "Violent Crime",
+                            "Homocide",
+                            "Rape",
+                            "Robbery",
+                            "Aggravated Assault",
+                            "Property Crime",
+                            "Burglary",
+                            "Larceny",
+                            "Motor Vehicle Theft",
+                            "Arson"
+                        ],
+                        "as": ["Crime Type", "Rate"]
+                    }
+                ],
+                "mark": {"type": "bar", "cornerRadiusEnd": 5},
+                "encoding": {
+                    "y": {"field": "Crime Type", "type": "ordinal", "title": "Type of Crime"},
+                    "x": {
+                        "field": "Rate",
+                        "type": "quantitative",
+                        "title": "Offences per 100k Population"
+                    },
+                    "tooltip": [
+                        {"field": "Crime Type", "type": "ordinal", "title": "Crime Type"},
+                        {
+                            "field": "Rate",
+                            "type": "quantitative",
+                            "title": "Offences per 100k Population",
+                            "format": ",d"
+                        }
+                    ]
+                },
+                "config": {}
+            });
+        </script>
+    </div>
+    <div class="chart-wrapper soft-frame">
+        <div class="chart-description" style="background-color: transparent;">
+            This chart showcases the preference of crime types based on a crime rate of 100k persons, covering all types of crimes. Upon aggregating data from all states, it's clear that larceny has the highest rate, reaching 81350.9, while homocide, a type of violent crime, has the lowest rate at 265.1.
+        </div>
+        <div class="chart-container" id="chart2" style="background-color: transparent;">
+        </div>
+        <script type="text/javascript">
+            vegaEmbed('#chart2', {
+                "$schema": "https://vega.github.io/schema/vega/v5.json",
+                "topic": "Crime type total distribution",
+                "description": "A radar chart example, showing multiple dimensions in a radial layout.",
+                "title": "Crime Preference in the US",
+                "width": 450,
+                "height": 400,
+                "padding":80,
+                "autosize": {"type": "none", "contains": "padding"},
+                "signals": [{"name": "radius", "update": "width / 2.2"}],
+                "data": [
+                    {
+                        "name": "table",
+                        "values": [
+                            {
+                                "key": "Homocide",
+                                "value": 2.42341,
+                                "category": 0,
+                                "crime_total": 265.1
+                            },
+                            {
+                                "key": "Rape",
+                                "value": 3.398426,
+                                "category": 0,
+                                "crime_total": 2502.8
+                            },
+                            {
+                                "key": "Robbery",
+                                "value": 3.545975,
+                                "category": 0,
+                                "crime_total": 3515.4
+                            },
+                            {
+                                "key": "Aggravated Assault",
+                                "value": 4.117606,
+                                "category": 0,
+                                "crime_total": 13110.1
+                            },
+                            {
+                                "key": "Burglary",
+                                "value": 4.246146,
+                                "category": 0,
+                                "crime_total": 17625.7
+                            },
+                            {
+                                "key": "Larceny",
+                                "value": 4.910362,
+                                "category": 0,
+                                "crime_total": 81350.9
+                            },
+                            {
+                                "key": "Motor Vehicle Theft",
+                                "value": 4.04232,
+                                "category": 0,
+                                "crime_total": 11023.5
+                            },
+                            {"key": "Arson", "value": 2.761101, "category": 0, "crime_total": 576.9}
+                        ]
+                    },
+                    {
+                        "name": "keys",
+                        "source": "table",
+                        "transform": [{"type": "aggregate", "groupby": ["key"]}]
+                    }
+                ],
+                "scales": [
+                    {
+                        "name": "angular",
+                        "type": "point",
+                        "range": {"signal": "[-PI, PI]"},
+                        "padding": 0.5,
+                        "domain": {"data": "table", "field": "key"}
+                    },
+                    {
+                        "name": "radial",
+                        "type": "linear",
+                        "range": {"signal": "[0, radius]"},
+                        "zero": true,
+                        "nice": false,
+                        "domain": {"data": "table", "field": "value"},
+                        "domainMin": 0
+                    },
+                    {
+                        "name": "color",
+                        "type": "ordinal",
+                        "domain": {"data": "table", "field": "category"},
+                        "range": {"scheme": "category10"}
+                    }
+                ],
+                "encode": {"enter": {"x": {"signal": "radius"}, "y": {"signal": "radius"}}},
+                "marks": [
+                    {
+                        "type": "group",
+                        "name": "categories",
+                        "zindex": 1,
+                        "from": {
+                            "facet": {"data": "table", "name": "facet", "groupby": ["category"]}
+                        },
+                        "marks": [
+                            {
+                                "type": "line",
+                                "name": "category-line",
+                                "from": {"data": "facet"},
+                                "encode": {
+                                    "enter": {
+                                        "interpolate": {"value": "linear-closed"},
+                                        "x": {
+                                            "signal": "scale('radial', datum.value) * cos(scale('angular', datum.key))"
+                                        },
+                                        "y": {
+                                            "signal": "scale('radial', datum.value) * sin(scale('angular', datum.key))"
+                                        },
+                                        "stroke": {"scale": "color", "field": "category"},
+                                        "strokeWidth": {"value": 1},
+                                        "fill": {"scale": "color", "field": "category"},
+                                        "fillOpacity": {"value": 0.1},
+                                        "tooltip": {
+                                            "signal": "{'Crime Type': datum.key, 'Total': datum.crime_total}"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": "text",
+                                "name": "value-text",
+                                "from": {"data": "category-line"},
+                                "encode": {
+                                    "enter": {
+                                        "x": {"signal": "datum.x"},
+                                        "y": {"signal": "datum.y"},
+                                        "text": {"signal": "datum.datum.crime_total"},
+                                        "align": {"value": "center"},
+                                        "baseline": {"value": "middle"},
+                                        "fill": {"value": "black"}
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "rule",
+                        "name": "radial-grid",
+                        "from": {"data": "keys"},
+                        "zindex": 0,
+                        "encode": {
+                            "enter": {
+                                "x": {"value": 0},
+                                "y": {"value": 0},
+                                "x2": {"signal": "radius * cos(scale('angular', datum.key))"},
+                                "y2": {"signal": "radius * sin(scale('angular', datum.key))"},
+                                "stroke": {"value": "lightgray"},
+                                "strokeWidth": {"value": 1}
+                            }
+                        }
+                    },
+                    {
+                        "type": "text",
+                        "name": "key-label",
+                        "from": {"data": "keys"},
+                        "zindex": 1,
+                        "encode": {
+                            "enter": {
+                                "x": {"signal": "(radius + 5) * cos(scale('angular', datum.key))"},
+                                "y": {"signal": "(radius + 5) * sin(scale('angular', datum.key))"},
+                                "text": {"field": "key"},
+                                "align": [
+                                    {
+                                        "test": "abs(scale('angular', datum.key)) > PI / 2",
+                                        "value": "right"
+                                    },
+                                    {"value": "left"}
+                                ],
+                                "baseline": [
+                                    {"test": "scale('angular', datum.key) > 0", "value": "top"},
+                                    {"test": "scale('angular', datum.key) == 0", "value": "middle"},
+                                    {"value": "bottom"}
+                                ],
+                                "fill": {"value": "black"},
+                                "fontWeight": {"value": "bold"}
+                            }
+                        }
+                    },
+                    {
+                        "type": "line",
+                        "name": "outer-line",
+                        "from": {"data": "radial-grid"},
+                        "encode": {
+                            "enter": {
+                                "interpolate": {"value": "linear-closed"},
+                                "x": {"field": "x2"},
+                                "y": {"field": "y2"},
+                                "stroke": {"value": "lightgray"},
+                                "strokeWidth": {"value": 1}
+                            }
+                        }
+                    }
+                ],
+                "config": {}
+            });
+        </script>
+    </div>
+    <div class="chart-wrapper soft-frame">
+        <div class="chart-description" style="background-color: transparent;">
+            This scatter plot displays violent crimes vs. property crimes for each state. Most states have a proportional distribution on the scatter plot. However, the worst-performing states are the District of Columbia, New Mexico, and Alaska, as they are situated in the top-right corner of the plot.
+        </div>
+        <div class="chart-container" id="chart3" style="background-color: transparent;">
+        </div>
+        <script type="text/javascript">
+            vegaEmbed('#chart3', {
+                "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                "width": 600,
+                "height": 350,
+                "title": {
+                    "text": "Crime in the US",
+                    "fontSize": 16,
+                    "subtitle": ["Offences per 100k population. Source FBI, 2019"],
+                    "subtitleFontStyle": "italic",
+                    "subtitleFontSize": 13,
+                    "anchor": "middle"
+                },
+                "data": {
+                    "url": "https://raw.githubusercontent.com/jhellingsdata/jhellingsdata.github.io/main/Data/USA_crime_databank_wide.csv"
+                },
+                "mark": "point",
+                "encoding": {
+                    "x": {
+                        "field": "Violent Crime",
+                        "type": "quantitative",
+                        "title": "Violent Crime Rate"
+                    },
+                    "y": {
+                        "field": "Property Crime",
+                        "type": "quantitative",
+                        "title": "Property Crime Rate"
+                    },
+                    "color": {
+                        "field": "State",
+                        "type": "nominal",
+                        "legend": {"title": "State"}
+                    },
+                    "tooltip": [
+                        {"field": "State", "title": "State"},
+                        {"field": "Violent Crime", "title": "Violent Crime Rate", "format": ",d"},
+                        {
+                            "field": "Property Crime",
+                            "title": "Property Crime Rate",
+                            "format": ",d"
+                        }
+                    ]
+                },
+                "config": {}
+            });
+        </script>
+    </div>
+    <div class="chart-wrapper soft-frame">
+        <div class="chart-description" style="background-color: transparent;">
+            Examining this line chart, which represents data from the years 2012-2020 in the United States, we find that the average crime rate for violent crimes lies between 360-400. The year 2020 saw the highest rate at 398.
+        </div>
+        <div class="chart-container" id="chart4" style="background-color: transparent;">
+        </div>
+        <script type="text/javascript">
+            vegaEmbed('#chart4', {
+                "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                "title": "Rate of crime from 2012 - 2020",
+                "description": "Rate of Violent Crime and Property Crime Offenses by Year",
+                "width": 600,
+                "height": 300,
+                "data": {
+                    "values": [
+                        {"Year": "2012", "Rate": 387.8, "Crime Type": "Violent Crime"},
+                        {"Year": "2012", "Rate": 2905.4, "Crime Type": "Property Crime"},
+                        {"Year": "2013", "Rate": 369.1, "Crime Type": "Violent Crime"},
+                        {"Year": "2013", "Rate": 2868.0, "Crime Type": "Property Crime"},
+                        {"Year": "2014", "Rate": 361.6, "Crime Type": "Violent Crime"},
+                        {"Year": "2014", "Rate": 2733.6, "Crime Type": "Property Crime"},
+                        {"Year": "2015", "Rate": 373.7, "Crime Type": "Violent Crime"},
+                        {"Year": "2015", "Rate": 2574.1, "Crime Type": "Property Crime"},
+                        {"Year": "2016", "Rate": 397.5, "Crime Type": "Violent Crime"},
+                        {"Year": "2016", "Rate": 2500.5, "Crime Type": "Property Crime"},
+                        {"Year": "2017", "Rate": 394.9, "Crime Type": "Violent Crime"},
+                        {"Year": "2017", "Rate": 2451.6, "Crime Type": "Property Crime"},
+                        {"Year": "2018", "Rate": 383.4, "Crime Type": "Violent Crime"},
+                        {"Year": "2018", "Rate": 2362.9, "Crime Type": "Property Crime"},
+                        {"Year": "2019", "Rate": 380.8, "Crime Type": "Violent Crime"},
+                        {"Year": "2019", "Rate": 2209.8, "Crime Type": "Property Crime"},
+                        {"Year": "2020", "Rate": 398.5, "Crime Type": "Violent Crime"},
+                        {"Year": "2020", "Rate": 2130.6, "Crime Type": "Property Crime"}
+                    ]
+                },
+                "layer": [
+                    {
+                        "mark": {
+                            "type": "line",
+                            "point": {"filled": false, "fill": "white", "size": 100},
+                            "interpolate": "monotone",
+                            "tooltip": true
+                        },
+                        "encoding": {
+                            "x": {"field": "Year", "type": "ordinal", "title": "Year"},
+                            "y": {
+                                "field": "Rate",
+                                "type": "quantitative",
+                                "title": "Rate of Crime",
+                                "scale": {"domain": [0, 3000]}
+                            },
+                            "color": {
+                                "field": "Crime Type",
+                                "type": "nominal",
+                                "legend": {"title": "Type of Crime", "orient": "top-right"},
+                                "scale": {"domain": ["Violent Crime", "Property Crime"], "range": ["blue", "red"]}
+                            }
+                        }
+                    }
+                ],
+                "resolve": {
+                    "scale": {
+                        "y": "independent"
+                    }
+                }
+            });
+        </script>
+    </div>
+    <div class="chart-wrapper soft-frame">
+        <div class="chart-description" style="background-color: transparent;">
+            Delving into societal biases towards crime, it is evident that race plays a significant role, with 4491 incidents attributed to it. Furthermore, sexual orientation and religion also have high incident counts, recorded at 1121 and 1013 respectively.
+        </div>
+        <div class="chart-container" id="chart5" style="background-color: transparent;">
+        </div>
+        <script type="text/javascript">
+            vegaEmbed('#chart5', {
+                "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                "description": "Pie chart of bias categories",
+                "height": 300,
+                "width": 500,
+                "data": {
+                    "values": [
+                        {"category": "Race/Ethnicity/Ancestry", "value": 4491},
+                        {"category": "Religion", "value": 1013},
+                        {"category": "Sexual Orientation", "value": 1121},
+                        {"category": "Disability", "value": 136},
+                        {"category": "Gender", "value": 72},
+                        {"category": "Gender Identity", "value": 266},
+                        {"category": "Multiple Bias", "value": 188}
+                    ]
+                },
+                "mark": {"type": "arc", "innerRadius": 30},
+                "encoding": {
+                    "theta": {"field": "value", "type": "quantitative", "stack": true},
+                    "color": {
+                        "field": "category",
+                        "type": "nominal",
+                        "scale": {
+                            "range": [
+                                "#1f77b4",
+                                "#ff7f0e",
+                                "#d62728",
+                                "#9467bd",
+                                "#8c564b",
+                                "#e377c2",
+                                "#7f7f7f"
+                            ]
+                        },
+                        "legend": {"title": "Bias Categories"}
+                    },
+                    "tooltip": [
+                        {"field": "category", "type": "nominal", "title": "Category"},
+                        {"field": "value", "type": "quantitative", "title": "Incidents"}
+                    ],
+                    "text": {"field": "value", "type": "quantitative"}
+                },
+                "view": {"stroke": null},
+                "title": "Incidents by Bias Categories",
+                "config": {}
+            });
+        </script>
+    </div>
+</div>
 </body>
 </html>
