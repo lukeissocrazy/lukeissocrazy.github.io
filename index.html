@@ -3,8 +3,11 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
     <title>
-        US Crime Data Visualization
+        US Crime Data Visualisation
     </title>
     <!-- Include Vega and Vega-Lite Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/vega@5">
@@ -19,6 +22,16 @@
             background-color: #e6e0f8;  /* Light grayish background */
             margin: 0 auto;
             max-width: 1500px;
+        }
+
+        .main-topic {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            text-align: center;
+            font-family: 'Open Sans', sans-serif;
+            color: saddlebrown;
+            text-shadow: 0px 0px 15px #00FFFF,0px 0px 15px #00FFFF,0px 0px 15px #00FFFF;
         }
 
         .intro {
@@ -37,9 +50,14 @@
             font-style: italic;
         }
 
-        H0%;  /* Adjusted to fit 2 charts per row with some margin */
-        margin-right: 2%;  /* margin between two charts */
+        .intro-description {
+            font-family: 'Lato', sans-serif;
         }
+
+        .conclusion-description {
+            font-family: 'Lato', sans-serif;;
+        }
+
 
         /* Clear float after every 2nd chart */
 
@@ -79,54 +97,49 @@
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
+
         .chart-description {
             font-size: medium;
             font-style: normal;
         }
+
+
 
         .chart-subtopic {
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 20px;
             text-align: center;
+            font-family: 'Open Sans', sans-serif;
+            color: saddlebrown;
+            text-shadow: 0px 0px 15px #00FFFF,0px 0px 15px #00FFFF,0px 0px 15px #00FFFF;
         }
 
         .chart-description {
-            font-family: 'Comic Sans MS', cursive;
+            font-family: 'Lato', sans-serif;
             font-size: 16px;
             line-height: 1.5;
         }
 
-        .intro-conclusion-description {
-            font-family: 'Comic Sans MS', cursive;
-        }
 
-        .conclusion-container {
-            border: 2px solid #888888;
-            padding: 20px;
-            margin: 20px 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
     </style>
 </head>
 <body>
 <div class="intro" style="text-align: center;">
-    <h1>
+    <div class="main-topic">
         Crime in the United States
-    </h1>
-    <p>
+    </div>
+    <div class = "intro-description">
         Crime in the United States has been recorded since the early colonial days. Over the years, the nature and dynamics of criminal activities have evolved,
         influenced by various socio-economic and political factors. The data visualizations below provide insights into crime rates across different states,
         trends over time, and the demographic distribution of arrestees. By analyzing this data, stakeholders can make informed decisions to improve
         public safety and justice outcomes.
-    </p>
+    </div>
 </div>
 <script type="text/javascript">
     vegaEmbed('#chart1', {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "background": "transparent",
         "vconcat": [
             {
                 "width": 600,
@@ -175,7 +188,7 @@
                     "color": {
                         "field": "varSelected",
                         "type": "quantitative",
-                        "scale": {"scheme": "yellowgreenblue"},
+                        "scale": {"scheme": "viritis"},
                         "legend": {
                             "title": "criminal population",
                             "orient": "right",
@@ -212,7 +225,7 @@
                     "color": {
                         "field": "varSelected",
                         "type": "quantitative",
-                        "scale": {"scheme": "yellowgreenblue"},
+                        "scale": {"scheme": "viritis"},
                         "legend": {"title": "Crime Rate"}
                     },
                     "tooltip": [
@@ -250,6 +263,7 @@
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "width": 600,
         "height": 350,
+        "background": "transparent",
         "title": {
             "text": "Crime Rates by Type",
             "fontSize": 16,
@@ -372,6 +386,7 @@
         "topic": "Crime type total distribution",
         "description": "A radar chart example, showing multiple dimensions in a radial layout.",
         "title": "Crime Preference in the US",
+        "background": "transparent",
         "width": 450,
         "height": 400,
         "padding":80,
@@ -570,10 +585,11 @@
 <script type="text/javascript">
     vegaEmbed('#chart4', {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "background": "transparent",
         "width": 600,
         "height": 350,
         "title": {
-            "text": "Crime in the US",
+            "text": "The Crime of Property vs Violent in the US",
             "fontSize": 16,
             "subtitle": ["Offences per 100k population. Source FBI, 2019"],
             "subtitleFontStyle": "italic",
@@ -583,6 +599,73 @@
         "data": {
             "url": "https://raw.githubusercontent.com/jhellingsdata/jhellingsdata.github.io/main/Data/USA_crime_databank_wide.csv"
         },
+        "params": [
+            {
+                "name": "SelectedState",
+                "value": "All",
+                "bind": {
+                    "input": "select",
+                    "options": [
+                        "All",
+                        "Alabama",
+                        "Alaska",
+                        "Arizona",
+                        "Arkansas",
+                        "California",
+                        "Colorado",
+                        "Connecticut",
+                        "Delaware",
+                        "District of Columbia",
+                        "Florida",
+                        "Georgia",
+                        "Hawaii",
+                        "Idaho",
+                        "Illinois",
+                        "Indiana",
+                        "Iowa",
+                        "Kansas",
+                        "Kentucky",
+                        "Louisiana",
+                        "Maine",
+                        "Maryland",
+                        "Massachusetts",
+                        "Michigan",
+                        "Minnesota",
+                        "Mississippi",
+                        "Missouri",
+                        "Montana",
+                        "Nebraska",
+                        "Nevada",
+                        "New Hampshire",
+                        "New Jersey",
+                        "New Mexico",
+                        "New York",
+                        "North Carolina",
+                        "North Dakota",
+                        "Ohio",
+                        "Oklahoma",
+                        "Oregon",
+                        "Pennsylvania",
+                        "Rhode Island",
+                        "South Carolina",
+                        "South Dakota",
+                        "Tennessee",
+                        "Texas",
+                        "Utah",
+                        "Vermont",
+                        "Virginia",
+                        "Washington",
+                        "West Virginia",
+                        "Wisconsin",
+                        "Wyoming"
+                    ],
+                    "name": "Select State"
+                }
+            }
+        ],
+        "transform": [
+            {"filter": "SelectedState === 'All' || datum.State === SelectedState"}
+        ],
         "mark": "point",
         "encoding": {
             "x": {
@@ -620,6 +703,7 @@
         "description": "Rate of Violent Crime and Property Crime Offenses by Year",
         "width": 600,
         "height": 300,
+        "background": "transparent",
         "data": {
             "values": [
                 {"Year": "2012", "Rate": 387.8, "Crime Type": "Violent Crime"},
@@ -678,6 +762,7 @@
     vegaEmbed('#chart6', {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "description": "Pie chart of bias categories",
+        "background": "transparent",
         "height": 300,
         "width": 500,
         "data": {
@@ -727,13 +812,21 @@
     </div>
     <div class="chart-wrapper soft-frame">
         <div class="chart-description" style="background-color: transparent;">
-            This chart, at its core, seeks to offer a panoramic view of crime rates across different states. The essence of visualizing such data lies in the ability to discern patterns and insights that raw numbers might obscure. By looking at this representation, regions of concern become immediately evident, as do areas that have managed to maintain a semblance of safety. For policymakers and law enforcement agencies, such data-driven insights are invaluable. They provide a roadmap for where interventions might be most needed and where resources should be allocated. For the general public, understanding these patterns equips them with the knowledge to make informed decisions about safety.
+            This chart, at its core, seeks to offer a panoramic view of crime rates across different states.
+            The essence of visualizing such data lies in the ability to discern patterns and insights that raw numbers might obscure.
+            By looking at this representation, regions of concern become immediately evident, as do areas that have managed to maintain a semblance of safety.
+            For policymakers and law enforcement agencies, such data-driven insights are invaluable.
+            </br>
+            </br>
+            Through this map, it is obviously to see that the District of Columbia, Alaska and New Mexico are the highest violent crime rate in the US.
+            In the property crime, the District of Columbia are still have the highest crime rate as well.
         </div>
         <div class="chart-container" id="chart1" style="background-color: transparent;">
         </div>
         <script type="text/javascript">
             vegaEmbed('#chart1', {
                 "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                "background": "transparent",
                 "vconcat": [
                     {
                         "width": 600,
@@ -782,7 +875,7 @@
                             "color": {
                                 "field": "varSelected",
                                 "type": "quantitative",
-                                "scale": {"scheme": "yellowgreenblue"},
+                                "scale": {"scheme": "viridis"},
                                 "legend": {
                                     "title": "criminal population",
                                     "orient": "right",
@@ -798,7 +891,7 @@
                     {
                         "width": 600,
                         "height": 400,
-                        "title": "Crime Rate by State",
+                        "title": "Crime Rate by State in detail",
                         "data": {
                             "url": "https://raw.githubusercontent.com/jhellingsdata/jhellingsdata.github.io/main/Data/USA_crime_databank_wide.csv"
                         },
@@ -819,7 +912,7 @@
                             "color": {
                                 "field": "varSelected",
                                 "type": "quantitative",
-                                "scale": {"scheme": "orangered"},
+                                "scale": {"scheme": "viridis"},
                                 "legend": {"title": "Crime Rate"}
                             },
                             "tooltip": [
@@ -858,7 +951,13 @@
     </div>
     <div class="chart-wrapper soft-frame">
         <div class="chart-description" style="background-color: transparent;">
-            The second visualization dives into the intricate details of reported crimes, categorizing and presenting them based on their type. While overarching crime rates provide a broad understanding, diving into the specifics of crime types reveals the nuances of the challenges faced. Whether a region is grappling with violent crimes, property-related incidents, or other categories becomes evident. Such granularity in data is essential for strategizing crime prevention methods, tailoring them to the specific challenges of an area. For law enforcement, it means allocating resources effectively and for policymakers, it guides legislation and interventions.
+            The second visualization dives into the intricate details of reported crimes, categorizing and presenting them based on their type.
+            While overarching crime rates provide a broad understanding, diving into the specifics of crime types reveals the nuances of the challenges faced.
+            Whether a region is grappling with violent crimes, property-related incidents, or other categories becomes evident.
+            Such granularity in data is essential for strategizing crime prevention methods, tailoring them to the specific challenges of an area.
+            </br>
+            </br>
+            By looking at this bar chart, it is evident that the District of Columbia has the highest rate in the United States, in the total of crime rate in 100k person.
         </div>
         <div class="chart-container" id="chart2" style="background-color: transparent;">
         </div>
@@ -867,6 +966,7 @@
                 "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
                 "width": 600,
                 "height": 350,
+                "background": "transparent",
                 "title": {
                     "text": "Crime Rates by Type",
                     "fontSize": 16,
@@ -896,6 +996,7 @@
                                 "Colorado",
                                 "Connecticut",
                                 "Delaware",
+                                "District of Columbia",
                                 "Florida",
                                 "Georgia",
                                 "Hawaii",
@@ -988,7 +1089,14 @@
     </div>
     <div class="chart-wrapper soft-frame">
         <div class="chart-description" style="background-color: transparent;">
-            Change is the only constant, and understanding how crime has evolved over time is crucial. This chart takes on the challenge of presenting a temporal view, tracing the trajectory of incidents over the years. Beyond just numbers, this trend tells a story. It sheds light on the effectiveness of interventions, societal shifts, and emerging trends. For those involved in long-term planning, be it urban development, law enforcement strategies, or community programs, such insights are foundational. They help assess past decisions and guide future ones.
+            Change is the only constant, and understanding how crime has evolved over time is crucial.
+            This chart takes on the challenge of presenting a temporal view, tracing the trajectory of incidents over the years.
+            Beyond just numbers, this trend tells a story. It sheds light on the effectiveness of interventions, societal shifts, and emerging trends.
+            For those involved in long-term planning, be it urban development, law enforcement strategies, or community programs, such insights are foundational.
+            </br>
+            </br>
+            In this radial chart, the data emphasises that larceny has the highest number of cases which is 81350.9 in the US.
+            Reversely, the homocide has the fewest amount which is only 265.1 in the nation.
         </div>
         <div class="chart-container" id="chart3" style="background-color: transparent;">
         </div>
@@ -1199,17 +1307,25 @@
     </div>
     <div class="chart-wrapper soft-frame">
         <div class="chart-description" style="background-color: transparent;">
-            Bias-driven incidents aren't just numbers; they're a reflection of deeper societal issues. This chart ventures into the motivations behind such crimes, providing a stark look at the prejudices that exist. Each data point here isn't just a statistic; it's a call to action. It emphasizes the need for community programs, education, and awareness campaigns that address these deep-rooted biases. For NGOs, community leaders, and policymakers, this chart is both a tool and a challenge, pushing for change.
+            Derived from 2019 FBI data, each point represents a state: the x-axis shows violent crime rates—like assaults, while the y-axis highlights property crimes such as burglaries.
+            The color-coding offers quick state identification. For specifics, hover over a point to see detailed rates.
+            This isn't just data—it's a snapshot of our nation's safety landscape, spotlighting regions for commendation or concern.
+            </br>
+            </br>
+            By observing this chart, we are able to find that all of states are proportional in the violent crime rate and property crime rate.
+            But however, District of Columbia, New Mexico and Alaska are in the right-top corner, which has the highest property and crime rate.
+
         </div>
         <div class="chart-container" id="chart4" style="background-color: transparent;">
         </div>
         <script type="text/javascript">
             vegaEmbed('#chart4', {
                 "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                "background": "transparent",
                 "width": 600,
                 "height": 350,
                 "title": {
-                    "text": "Crime in the US",
+                    "text": "The Crime of Property vs Violent in the US",
                     "fontSize": 16,
                     "subtitle": ["Offences per 100k population. Source FBI, 2019"],
                     "subtitleFontStyle": "italic",
@@ -1219,6 +1335,73 @@
                 "data": {
                     "url": "https://raw.githubusercontent.com/jhellingsdata/jhellingsdata.github.io/main/Data/USA_crime_databank_wide.csv"
                 },
+                "params": [
+                    {
+                        "name": "SelectedState",
+                        "value": "All",
+                        "bind": {
+                            "input": "select",
+                            "options": [
+                                "All",
+                                "Alabama",
+                                "Alaska",
+                                "Arizona",
+                                "Arkansas",
+                                "California",
+                                "Colorado",
+                                "Connecticut",
+                                "Delaware",
+                                "District of Columbia",
+                                "Florida",
+                                "Georgia",
+                                "Hawaii",
+                                "Idaho",
+                                "Illinois",
+                                "Indiana",
+                                "Iowa",
+                                "Kansas",
+                                "Kentucky",
+                                "Louisiana",
+                                "Maine",
+                                "Maryland",
+                                "Massachusetts",
+                                "Michigan",
+                                "Minnesota",
+                                "Mississippi",
+                                "Missouri",
+                                "Montana",
+                                "Nebraska",
+                                "Nevada",
+                                "New Hampshire",
+                                "New Jersey",
+                                "New Mexico",
+                                "New York",
+                                "North Carolina",
+                                "North Dakota",
+                                "Ohio",
+                                "Oklahoma",
+                                "Oregon",
+                                "Pennsylvania",
+                                "Rhode Island",
+                                "South Carolina",
+                                "South Dakota",
+                                "Tennessee",
+                                "Texas",
+                                "Utah",
+                                "Vermont",
+                                "Virginia",
+                                "Washington",
+                                "West Virginia",
+                                "Wisconsin",
+                                "Wyoming"
+                            ],
+                            "name": "Select State"
+                        }
+                    }
+                ],
+                "transform": [
+                    {"filter": "SelectedState === 'All' || datum.State === SelectedState"}
+                ],
                 "mark": "point",
                 "encoding": {
                     "x": {
@@ -1255,7 +1438,16 @@
     </div>
     <div class="chart-wrapper soft-frame">
         <div class="chart-description" style="background-color: transparent;">
-            At first glance, this chart might seem like a simple juxtaposition of two variables. However, the depth it offers is profound. It seeks to unravel potential relationships, dependencies, or patterns between these variables. In the world of data, correlations can lead to revelatory insights, paving the way for predictive models, proactive measures, and a deeper understanding of underlying phenomena. This chart, with its meticulous design, aims to make these correlations evident and actionable.
+            At first glance, this chart might seem like a simple juxtaposition of two variables. However, the depth it offers is profound.
+            It seeks to unravel potential relationships, dependencies, or patterns between these variables.
+            In the world of data, correlations can lead to revelatory insights, paving the way for predictive models, proactive measures, and a deeper understanding of underlying phenomena.
+            This chart, with its meticulous design, aims to make these correlations evident and actionable.
+            </br>
+            </br>
+            However, the dual line chart shows that the violent crime is keep around 360-400 cases from 2012-2020.
+            And also, the rate of property crime is keep decreasing from 2905.4 cases in 2012, to 2130.6 in 2020.
+
+
         </div>
         <div class="chart-container" id="chart5" style="background-color: transparent;">
         </div>
@@ -1263,6 +1455,7 @@
             vegaEmbed('#chart5', {
                 "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
                 "title": "Rate of crime from 2012 - 2020",
+                "background": "transparent",
                 "description": "Rate of Violent Crime and Property Crime Offenses by Year",
                 "width": 600,
                 "height": 300,
@@ -1326,7 +1519,11 @@
     </div>
     <div class="chart-wrapper soft-frame">
         <div class="chart-description" style="background-color: transparent;">
-            Pie charts have a unique way of presenting data, and this one is no different. By breaking down incidents based on bias categories, it offers a clear percentage-wise distribution. But beyond the numbers, each slice of this pie tells a profound story. It highlights prevalent prejudices, societal challenges, and areas that need introspection. Such visualizations are more than just data representations; they're a call for understanding, change, and action.
+            Pie charts have a unique way of presenting data, and this one is no different.
+            By breaking down incidents based on bias categories, it offers a clear percentage-wise distribution.
+            But beyond the numbers, each slice of this pie tells a profound story.
+            It highlights prevalent prejudices, societal challenges, and areas that need introspection.
+            Such visualizations are more than just data representations; they're a call for understanding, change, and action.
         </div>
         <div class="chart-container" id="chart6" style="background-color: transparent;">
         </div>
@@ -1336,6 +1533,7 @@
                 "description": "Pie chart of bias categories",
                 "height": 300,
                 "width": 500,
+                "background": "transparent",
                 "data": {
                     "values": [
                         {"category": "Race/Ethnicity/Ancestry", "value": 4491},
@@ -1384,8 +1582,12 @@
     <div class="chart-subtopic">
         Conclusion
     </div>
-    <div class = "intro-conclusion-description">
-    Through the visual representations presented above, we've journeyed through various facets of crime statistics. Each chart has illuminated different dimensions, from state-wise distributions to bias-driven incidents, from temporal trends to the nature of crimes. These visual insights not only provide a snapshot of the current scenario but also lay the groundwork for informed decisions, research, and public awareness. Understanding these patterns and anomalies is pivotal for policymakers, law enforcement agencies, and the community at large. As we move forward, it's essential to leverage this data, ensuring a safer, more informed society.
+    <div class = "conclusion-description">
+        Through the visual representations presented above, we've journeyed through various facets of crime statistics.
+        Each chart has illuminated different dimensions, from state-wise distributions to bias-driven incidents, from temporal trends to the nature of crimes.
+        These visual insights not only provide a snapshot of the current scenario but also lay the groundwork for informed decisions, research, and public awareness.
+        Understanding these patterns and anomalies is pivotal for policymakers, law enforcement agencies, and the community at large.
+        As we move forward, it's essential to leverage this data, ensuring a safer, more informed society.
     </div>
 </div>
 </body>
